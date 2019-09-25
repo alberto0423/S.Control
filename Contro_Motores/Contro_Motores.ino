@@ -9,12 +9,10 @@ const int in3Pin = 8;  //Entrada 15 del puente-H
 const int in4Pin = 9; //Entrada 10 del puente -H
 
 const int in5Pin = 11; //Entrada del Led
-const int Pin_A0 = 0;
-const int Pin_A1 = 1; 
+int in = 0;
+byte pinOut = 12;
  
 void setup() {
- 
- 
  
 Serial.begin(9600); //Iniciamos la comunicacion serial
  
@@ -28,8 +26,8 @@ pinMode(in4Pin, OUTPUT);
 pinMode(in5Pin, OUTPUT);
 
 
-pinMode(Pin_A0, OUTPUT);
-pinMode(Pin_A1, OUTPUT);
+pinMode(pinOut, OUTPUT);
+//pinMode(Pin_TIP_2, OUTPUT);
  
 Serial.println("Para seleccionar la velocidad del motor (0-9). Para seleccionar la direccion introduce + o -"); //Imprime en la consola puerto serie
  
@@ -76,20 +74,14 @@ void loop() {
  
       digitalWrite(in5Pin,HIGH);
 
-
-
-
-// Tip
-       digitalWrite(in5Pin,LOW);
+      analogWrite(in5Pin,LOW);
  
-      digitalWrite(in5Pin,HIGH);
 
-      
-       digitalWrite(in5Pin,LOW);
- 
-      digitalWrite(in5Pin,HIGH);
+//Tip
+      analogWrite(pinOut,in);
+    
 
- 
+   
     }
  
     else if (ch == '-') { 
@@ -107,6 +99,9 @@ void loop() {
       digitalWrite(in5Pin,HIGH);
  
       digitalWrite(in5Pin,LOW);
+
+      analogWrite(pinOut,in);
+
  
     }
  
